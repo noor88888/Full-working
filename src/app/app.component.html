@@ -1,0 +1,53 @@
+<div class="col">
+  <h3>Dropdown</h3>
+  <select [(ngModel)]="fileSelected" (change)="selectfileType($event.target)">
+    <option *ngFor="let y of files" [value]="y">{{ y }}</option>
+  </select>
+  <br />
+  <br />
+  <input
+    type="file"
+    name="upload"
+    (change)="onFileChange($event, fileSelected)"
+    (change)="fileType($event.target, fileSelected)"
+    multiple="false"
+  />
+  <form id="myForm">
+    <table>
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let cell of row">
+            {{ cell }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<input
+  type="radio"
+  id="json"
+  name="data_format"
+  value="json"
+  [checked]="dataFormat === 'json' ? true : false"
+  (click)="onradiochange('json')"
+/>
+<label for="json">json</label><br />
+<input
+  type="radio"
+  id="xml"
+  name="data_format"
+  value="xml"
+  [checked]="dataFormat === 'xml' ? true : false"
+  (click)="onradiochange('xml')"
+/>
+<label for="xml">xml</label><br />
+<button (click)="convertTodatFormat()" type="submit">covert</button>
+<div class="results">
+  <h2>Form Data</h2>
+  <ng-container *ngIf="result">
+    <pre *ngIf="dataFormat === 'json'">{{ result | json }}</pre>
+    <pre *ngIf="dataFormat === 'xml'">{{ result }}</pre>
+  </ng-container>
+</div>
