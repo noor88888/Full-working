@@ -1,4 +1,5 @@
 <div class="col">
+  <h1>MX Compass</h1>
   <h3>Dropdown</h3>
   <select [(ngModel)]="fileSelected" (change)="selectfileType($event.target)">
     <option *ngFor="let y of files" [value]="y">{{ y }}</option>
@@ -45,7 +46,7 @@
 <label for="xml">xml</label><br />
 <button (click)="convertTodatFormat()" type="submit">covert</button>
 <div class="results">
-  <h2>Form Data</h2>
+  <h2>Converted Data</h2>
   <ng-container *ngIf="result">
     <pre *ngIf="dataFormat === 'json'">{{ result | json }}</pre>
     <pre *ngIf="dataFormat === 'xml'">{{ result }}</pre>

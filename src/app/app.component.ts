@@ -12,19 +12,13 @@ export class AppComponent {
   ngOnInit() {}
   result = null;
   dataFormat = 'xml';
-
   fileSelected: any;
-
   files = ['csv', 'xlsx'];
-
   names = ' ';
   selectcheckboxvalue = false;
-
   constructor() {}
-
   selectfileType($event: any) {
     console.log($event);
-
     return ($event = this.names);
   }
 
@@ -53,15 +47,15 @@ export class AppComponent {
         const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
         const wsname: string = wb.SheetNames[0];
         const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-        // console.log(ws);
-
         this.data = XLSX.utils.sheet_to_json(ws, { header: 1 });
         console.log(this.data, 'this.data');
       };
       reader.readAsBinaryString(target.files[0]);
     } else {
       alert(
-        'Sorry, ' + fileend + ' is invalid allowed extentions are .xlsx and csv'
+        'Sorry, ' +
+          fileend +
+          ' is invalid allowed extentions are .xlsx and .csv'
       );
       return (evt.target.value = '');
     }
